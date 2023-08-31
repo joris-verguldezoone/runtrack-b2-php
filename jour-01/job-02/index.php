@@ -1,28 +1,25 @@
 <?php
+// Dans le dossier job-02, faites un fichier index.php. 
+// À l’intérieur de ce fichier index.php, ajouter une fonction my_str_reverse().
+// Cette fonction permettra d’inverser l’ordre des 
+// lettres d’une chaîne de caractères.
+// Voici la signature de la fonction, veillez à la respecter : 
+// Elle prendra en premier paramètre la chaine de caractères
+// à inverser. Cette fonction retourne la chaînechaine de 
+// caractère inversée inversé.
 
-// Dans le dossier job-02, faites un fichier index.php. À l’intérieur de ce fichier, faites une
-// fonction find_one_student(). Cette fonction devra retourner un tableau avec toutes les
-// colonnes d’une ligne de la table student en fonction d’un email.
-// Dans la suite de votre page index.php, faites un formulaire avec pour méthode get, un
-// input de type text avec comme attribut name input-email-student et un bouton submit.
-// Cet input doit permettre de récupérer toutes les informations de l’étudiant
-// correspondant .
+function my_str_reverse(string $string) :string {
+    $reversedString = "";
+    $length = 0;
+    for ($i=0;isset($string[$i]); $i++) { 
+        $length++;
+    }
 
-function find_one_student(string $email) :array {
-    $db = new PDO('mysql:host=localhost;dbname=exo_sql;charset=utf8', 'root', '');
-    $query = $db->prepare('SELECT * FROM student WHERE email = :email');
-    $query->bindParam(':email',$email, PDO::PARAM_STR);
-    
-    $query->execute();
-    $result = $query->fetchAll();
-
-    return $result;
+    for ($i = $length - 1; $i >= 0; $i--) {
+        $reversedString = $reversedString . $string[$i];
+    }
+    // echo $reversedString;
+    return $reversedString;
 }
-
-// Pièges: 
-// utiliser bindParam   
-
-find_one_student('arobin@louis.com');
-
-
+my_str_reverse('anticonstitutionnellement')
 ?>
